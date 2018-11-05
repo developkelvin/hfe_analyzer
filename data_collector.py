@@ -4,7 +4,7 @@ import sys
 import pymysql
 from env_setting import host, user, password, db, charset
 
-VERSION = '0.0.2'
+VERSION = '0.0.3'
 TEST_MODE = True
 
 
@@ -80,7 +80,7 @@ class DataCollector:
         if TEST_MODE:
             sql = 'INSERT INTO hfe_data_test(ex_sequence, hand_side, box_size, user_idx, box_num, x_rect, y_rect, x_thumb, y_thumb, distance_1, distance_2 ) VALUES (' + ex_sequence + ', ' + hand_side + ', ' + box_size + ', ' + str(self.user_idx) + ',%s ,%s, %s, %s, %s, %s, %s)'
         else:
-            sql = 'INSERT INTO hfe_data(ex_sequence, hand_side, box_size, box_num, x_rect, y_rect, x_thumb, y_thumb, distance_1, distance_2 ) VALUES (' + ex_sequence + ', '+ hand_side+', '+ box_size+',%s ,%s, %s, %s, %s, %s, %s)'
+            sql = 'INSERT INTO hfe_data(ex_sequence, hand_side, box_size, user_idx, box_num, x_rect, y_rect, x_thumb, y_thumb, distance_1, distance_2 ) VALUES (' + ex_sequence + ', ' + hand_side + ', ' + box_size + ', ' + str(self.user_idx) + ',%s ,%s, %s, %s, %s, %s, %s)'
 
         try:
             print(sql)
