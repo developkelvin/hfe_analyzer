@@ -110,8 +110,8 @@ class DataCollector:
             sql = 'INSERT INTO hfe_user(age, name_kor, name_eng) VALUES (%s, %s, %s)'
             get_user_idx_sql = 'SELECT user_idx FROM hfe_user WHERE name_eng = %s'
 
-
         user_idx = 0
+
         try:
             conn = self.conn
             cursor = conn.cursor()
@@ -121,6 +121,7 @@ class DataCollector:
             conn.commit()
         except pymysql.err.MySQLError as mse:
             print(mse)
+            print("사용자 입력에 실패했습니다. 프로그램을 종료합니다.")
             sys.exit(1)
         except Exception as e:
             print(e)
@@ -178,7 +179,8 @@ if __name__ == '__main__':
     age = input("나이를 입력하세요. [optional]\n")
 
     print("폴더 내의 엑셀 파일을 스캔합니다.\n")
-
+    if age == '':
+        age = 0
     collector = DataCollector(name_eng=name_eng, name_kor=name_kor, age=age)
 
     collector.run_collector()
